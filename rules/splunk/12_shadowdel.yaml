@@ -1,6 +1,6 @@
 title: "VSS Shadow Copy Deletion"
 id: "rule-12"
-description: "Ransomware hücumlarının tipik əlaməti olan kölgə nüsxələrinin silinməsi."
+description: "Ransomware hücumlarının tipik əlaməti olan kölgə nüsxələrinin silinməsi"
 detection:
   condition: |
     index=windows EventCode=1 Image IN ("*\\vssadmin.exe", "*\\wmic.exe") CommandLine IN ("*delete shadows*", "*resize shadowstorage*", "*shadowcopy delete*")
