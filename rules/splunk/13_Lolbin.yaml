@@ -1,0 +1,6 @@
+title: "CertUtil File Download and Decode"
+id: "rule-17"
+description: "Hücumçuların fayl yükləmək və ya kodlaşdırılmış faylları açmaq üçün CertUtil-dən istifadəsi."
+detection:
+  condition: |
+    index=windows EventCode=1 Image="*\\certutil.exe" CommandLine IN ("*-urlcache*", "*-split*", "*-decode*", "*-f*")
