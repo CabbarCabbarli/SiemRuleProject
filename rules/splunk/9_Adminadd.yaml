@@ -1,0 +1,6 @@
+title: "New User Account Admin Promotion"
+id: "rule-13"
+description: "İstifadəçinin admin qrupuna əlavə edilməsi."
+detection:
+  condition: |
+    index=windows EventCode IN (4720, 4732)
