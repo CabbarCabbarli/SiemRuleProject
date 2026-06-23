@@ -1,5 +1,5 @@
 title: "CertUtil File Download and Decode"
-id: "rule-17"
+id: "rule-13"
 description: "Hücumçuların fayl yükləmək və ya kodlaşdırılmış faylları açmaq üçün CertUtil-dən istifadəsi."
 detection:
   condition: |
