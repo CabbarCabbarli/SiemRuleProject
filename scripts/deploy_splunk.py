@@ -17,7 +17,7 @@ def deploy_rule(file_path):
             print(f"YAML oxunma xətası: {e}")
             return
 
-    url = f"{SPLUNK_HOST}/services/saved/searches"
+    url = f"{SPLUNK_HOST}/servicesNS/admin/search/saved/searches"
     headers = {'Authorization': f'Splunk {SPLUNK_TOKEN}'}
     
     payload = {
