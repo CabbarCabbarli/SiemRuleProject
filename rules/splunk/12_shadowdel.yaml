@@ -1,5 +1,5 @@
 title: "VSS Shadow Copy Deletion"
-id: "rule-16"
+id: "rule-12"
 description: "Ransomware hücumlarının tipik əlaməti olan kölgə nüsxələrinin silinməsi."
 detection:
   condition: |
