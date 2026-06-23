@@ -1,5 +1,5 @@
 title: Suspicious PowerShell Encoded Command
-id: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+id: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6
 status: experimental
 description: Hücumçular tərəfindən icra olunan gizli (encoded) PowerShell skriptlərinin aşkarlanması.
 author: SOC Analyst
