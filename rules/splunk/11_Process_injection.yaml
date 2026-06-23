@@ -1,5 +1,5 @@
 title: "Suspicious Process Injection"
-id: "rule-15"
+id: "rule-11"
 description: "Prosesə inyeksiya (CreateRemoteThread)."
 detection:
   condition: |
