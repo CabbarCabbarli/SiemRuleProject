@@ -1,5 +1,5 @@
 title: "BitsAdmin File Download"
-id: "rule-10"
+id: "rule-6"
 description: "BITSAdmin vasitəsilə fayl köçürülməsi."
 detection:
   condition: |
