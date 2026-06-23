@@ -1,5 +1,5 @@
 title: "Lateral Movement via WMI"
-id: "rule-11"
+id: "rule-7"
 description: "WMI vasitəsilə proses icrası."
 detection:
   condition: |
