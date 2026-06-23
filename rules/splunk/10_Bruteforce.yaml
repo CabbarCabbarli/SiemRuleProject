@@ -1,0 +1,6 @@
+title: "Excessive Failed Login Attempts"
+id: "rule-14"
+description: "Qısa müddətdə çoxsaylı uğursuz giriş."
+detection:
+  condition: |
+    index=windows EventCode=4625 | stats count by TargetUserName, Source_Network_Address | where count > 10
