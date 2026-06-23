@@ -1,5 +1,5 @@
 title: "Registry Persistence via Run Keys"
-id: "rule-09"
+id: "rule-05"
 description: "Registry Run key-lərinə dəyişiklik."
 detection:
   condition: |
