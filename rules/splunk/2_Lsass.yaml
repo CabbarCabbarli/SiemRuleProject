@@ -1,6 +1,6 @@
 title: "Suspicious LSASS Memory Access"
 id: "rule-02"
-description: "LSASS prosesinə qeyri-adi giriş cəhdləri."
+description: "LSASS prosesinə qeyri-adi giriş cəhdləri"
 detection:
   condition: |
     index=windows sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventCode=10 
