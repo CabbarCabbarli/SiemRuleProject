@@ -1,6 +1,6 @@
 title: "Suspicious Scheduled Task Creation"
 id: "rule-04"
-description: "Şübhəli planlaşdırılmış tapşırıq yaradılması."
+description: "Şübhəli planlaşdırılmış tapşırıq yaradılması"
 detection:
   condition: |
     index=windows EventCode=1 Image="*\\schtasks.exe" CommandLine IN ("*/create*", "*/change*")
