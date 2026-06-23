@@ -1,0 +1,6 @@
+title: "Registry Persistence via Run Keys"
+id: "rule-09"
+description: "Registry Run key-lərinə dəyişiklik."
+detection:
+  condition: |
+    index=windows EventCode=13 TargetObject IN ("*\\Run\\*", "*\\RunOnce\\*")
