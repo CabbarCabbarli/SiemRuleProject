@@ -1,0 +1,6 @@
+title: "Lateral Movement via WMI"
+id: "rule-11"
+description: "WMI vasitəsilə proses icrası."
+detection:
+  condition: |
+    index=windows EventCode=1 ParentImage="*\\WmiPrvSE.exe" Image IN ("*\\powershell.exe", "*\\cmd.exe", "*\\cscript.exe")
