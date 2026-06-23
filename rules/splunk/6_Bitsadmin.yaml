@@ -1,0 +1,6 @@
+title: "BitsAdmin File Download"
+id: "rule-10"
+description: "BITSAdmin vasitəsilə fayl köçürülməsi."
+detection:
+  condition: |
+    index=windows EventCode=1 Image="*\\bitsadmin.exe" CommandLine IN ("*/transfer*", "*/addfile*")
