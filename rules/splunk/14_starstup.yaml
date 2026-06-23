@@ -1,6 +1,6 @@
 title: "Suspicious File Creation in Startup Folder"
 id: "rule-14"
-description: "Startup qovluğuna şübhəli fayl yazılması."
+description: "Startup qovluğuna şübhəli fayl yazılması"
 detection:
   condition: |
     index=windows EventCode=11 TargetFilename="*\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\*"
