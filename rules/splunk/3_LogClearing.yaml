@@ -1,6 +1,6 @@
 title: "Windows Event Log Clearing"
 id: "rule-03"
-description: "Sistem loglarının təmizlənməsi."
+description: "Sistem loglarının təmizlənməsi"
 detection:
   condition: |
     index=windows EventCode IN (1102, 104)
