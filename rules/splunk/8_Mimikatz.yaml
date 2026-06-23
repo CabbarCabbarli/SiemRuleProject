@@ -1,0 +1,6 @@
+title: "Mimikatz Command Line Patterns"
+id: "rule-12"
+description: "Mimikatz alətinə xas əmrlər."
+detection:
+  condition: |
+    index=windows EventCode=1 CommandLine IN ("*sekurlsa::logonpasswords*", "*lsadump::sam*", "*token::elevate*", "*privilege::debug*")
