@@ -1,5 +1,5 @@
 title: "Mimikatz Command Line Patterns"
-id: "rule-12"
+id: "rule-8"
 description: "Mimikatz alətinə xas əmrlər."
 detection:
   condition: |
