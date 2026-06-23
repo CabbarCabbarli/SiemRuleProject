@@ -1,5 +1,5 @@
 title: "New User Account Admin Promotion"
-id: "rule-13"
+id: "rule-9"
 description: "İstifadəçinin admin qrupuna əlavə edilməsi."
 detection:
   condition: |
