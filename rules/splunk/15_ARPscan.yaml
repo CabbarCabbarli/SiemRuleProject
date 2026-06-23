@@ -1,6 +1,6 @@
 title: "Network Discovery via ARP"
 id: "rule-22"
-description: "Şəbəkədə hostların aşkarlanması üçün ARP scan."
+description: "Şəbəkədə hostların aşkarlanması üçün ARP scan"
 detection:
   condition: |
     index=windows EventCode=1 Image="*\\arp.exe" CommandLine="*-a*"
