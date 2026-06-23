@@ -1,0 +1,32 @@
+name: Deploy SIEM Rules to Splunk
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'rules/splunk/**'
+      - 'scripts/deploy_splunk.py'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml requests
+
+      - name: Run Deploy Script
+        env:
+          SPLUNK_HOST: ${{ secrets.SPLUNK_HOST }}
+          SPLUNK_TOKEN: ${{ secrets.SPLUNK_TOKEN }}
+        run: |
+          python scripts/deploy_splunk.py
