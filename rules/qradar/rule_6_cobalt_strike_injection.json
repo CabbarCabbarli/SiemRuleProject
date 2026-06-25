@@ -1,0 +1,15 @@
+{
+  "name": "MilliSec-BT: Cobalt Strike / Remote Thread Creation Detected",
+  "identifier": "rule_remote_thread",
+  "enabled": true,
+  "responses": { "create_offense": true },
+  "tests": [
+    {
+      "test_type": "Event",
+      "condition": "and",
+      "rules": [
+        { "log_source_type": "Microsoft Windows Security Event Log", "event_id": "8" }
+      ]
+    }
+  ]
+}
