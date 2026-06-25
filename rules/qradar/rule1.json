@@ -1,0 +1,11 @@
+{
+    "name": "MilliSec-BT-Suspicious-Activity",
+    "type": "EVENT",
+    "enabled": true,
+    "origin": "API",
+    "description": "API vasitəsilə yaradılmış qayda",
+    "tests": {
+        "type": "OR",
+        "tests": []
+    }
+}
