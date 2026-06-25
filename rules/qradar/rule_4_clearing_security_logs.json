@@ -1,0 +1,15 @@
+{
+  "name": "MilliSec-BT: Security Event Logs Cleared",
+  "identifier": "rule_cleared_logs",
+  "enabled": true,
+  "responses": { "create_offense": true },
+  "tests": [
+    {
+      "test_type": "Event",
+      "condition": "and",
+      "rules": [
+        { "log_source_type": "Microsoft Windows Security Event Log", "event_id": "1102" }
+      ]
+    }
+  ]
+}
