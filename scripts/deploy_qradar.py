@@ -3,48 +3,47 @@ import json
 import requests
 import urllib3
 
-# QRadar-ın self-signed sertifikat xətalarını gizlətmək üçün
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# ================= KONFİQURASİYA =================
-QRADAR_IP = "18.232.154.72"  # Məsələn: 217.25.27.174
+# Konfiqurasiya
+QRADAR_IP = "18.232.154.72" 
 SEC_TOKEN = "74a7852b-2e30-42e7-9f78-66824ed6f764"
-RULES_DIR = "../rules/qradar" # Skript scripts qovluğunda olduğu üçün bir pillə geri qayıdırıq
-# =================================================
+RULES_DIR = '../rules/qradar' 
 
-HEADERS = {
-    "SEC": SEC_TOKEN,
-    "Content-Type": "application/json",
-    "Accept": "application/json"
-}
+def deploy_rule(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        try:
+            # QRadar JSON gözləyir, YAML yox. Faylların JSON olduğundan əmin ol.
+            rule = json.load(f) 
+        except Exception as e:
+            print(f"JSON oxunma xətası: {e}")
+            return
 
-API_URL = f"https://{QRADAR_IP}/api/analytics/rules"
-
-def push_rules():
-    print("🚀 QRadar API Push Əməliyyatı Başlayır...\n")
+    # QRadar üçün ən vacib endpoint
+    url = f"https://{QRADAR_IP}/api/analytics/rules"
     
-    # Qovluqdakı bütün json fayllarını tap
+    headers = {
+        'SEC': SEC_TOKEN,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Version': '12.0' # Versiyanı mütləq qeyd etməliyik
+    }
+    
+    try:
+        # payload artıq faylın içindəki JSON-dur
+        response = requests.post(url, json=rule, headers=headers, verify=False, timeout=10)
+        
+        if response.status_code in [200, 201]:
+            print(f"OK: {rule.get('name')} uğurla yaradıldı.")
+        else:
+            print(f"XƏTA {response.status_code}: {response.text}")
+    except Exception as e:
+        print(f"Bağlantı xətası: {e}")
+
+def main():
     for filename in os.listdir(RULES_DIR):
         if filename.endswith(".json"):
-            filepath = os.path.join(RULES_DIR, filename)
-            
-            with open(filepath, "r", encoding="utf-8") as file:
-                try:
-                    rule_data = json.load(file)
-                    rule_name = rule_data.get("name", filename)
-                    
-                    # API-yə göndər
-                    response = requests.post(API_URL, headers=HEADERS, json=rule_data, verify=False)
-                    
-                    if response.status_code in [200, 201]:
-                        print(f"✅ UĞURLU: '{rule_name}' QRadar-a yazıldı!")
-                    elif response.status_code == 409:
-                        print(f"⚠️ MÖVCUDDUR: '{rule_name}' artıq QRadar-da var.")
-                    else:
-                        print(f"❌ XƏTA ({response.status_code}): '{rule_name}' yüklənmədi. Səbəb: {response.text}")
-                        
-                except Exception as e:
-                    print(f"❌ Fayl oxunma xətası ({filename}): {e}")
+            deploy_rule(os.path.join(RULES_DIR, filename))
 
 if __name__ == "__main__":
-    push_rules()
+    main()
