@@ -1,57 +1,53 @@
 import os
-import json
 import requests
 import urllib3
+import time
 
-# Təhlükəsizlik xəbərdarlığını söndürürük
+# QRadar-ın öz-özünə imzaladığı (self-signed) sertifikat xəbərdarlıqlarını gizlədirik
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# --- KONFİQURASİYA ---
+# --- KONFİQURASİYA BÖLMƏSİ ---
 QRADAR_IP = "18.232.154.72" 
 SEC_TOKEN = "74a7852b-2e30-42e7-9f78-66824ed6f764"
-RULES_DIR = 'rules/qradar' # Faylların olduğu qovluq
-# ---------------------
+ZIP_FILE_PATH = "rules/qradar/qradar_rules.zip" # GitHub-da saxlayacağımız fayl
+# -----------------------------
 
-def deploy_rule(file_path):
-    # Faylı oxuyuruq
-    with open(file_path, 'r', encoding='utf-8') as f:
-        try:
-            # Faylın JSON olduğundan əmin olmalısan
-            rule_data = json.load(f)
-        except Exception as e:
-            print(f"XƏTA: Fayl JSON formatında deyil! -> {e}")
-            return
+def deploy_rules_to_qradar():
+    print(f"🚀 GitHub -> QRadar Avtomatlaşdırması Başlayır...")
+    
+    if not os.path.exists(ZIP_FILE_PATH):
+        print(f"❌ XƏTA: Qayda paketi ({ZIP_FILE_PATH}) tapılmadı!")
+        print("Məsləhət: QRadar-dan export etdiyiniz .zip faylını bu qovluğa qoyun.")
+        return
 
-    # QRadar API Endpoint (POST)
-    url = f"https://{QRADAR_IP}/api/analytics/rules"
+    # QRadar Extension API endpointi
+    url = f"https://{QRADAR_IP}/api/config/extension_management/extensions"
     
     headers = {
         'SEC': SEC_TOKEN,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Version': '12.0'
+        'Accept': 'application/json'
     }
     
-    print(f"İşlənir: {rule_data.get('name')}...")
+    print(f"📦 Paketlənmiş qaydalar oxunur və API-yə göndərilir...")
     
     try:
-        response = requests.post(url, json=rule_data, headers=headers, verify=False, timeout=15)
-        
-        if response.status_code in [200, 201]:
-            print(f"✅ UĞURLU: {rule_data.get('name')} yaradıldı.")
+        # Faylı binary formatda oxuyub POST edirik
+        with open(ZIP_FILE_PATH, 'rb') as f:
+            files = {'file': (os.path.basename(ZIP_FILE_PATH), f, 'application/zip')}
+            response = requests.post(url, headers=headers, files=files, verify=False, timeout=30)
+            
+        if response.status_code in [200, 201, 202]:
+            print("✅ UĞURLU: Qaydalar QRadar-a müvəffəqiyyətlə transfer edildi!")
+            task_info = response.json()
+            print(f"Status: {task_info.get('status', 'Bilinmir')}")
+            print(f"Bu əməliyyatla SİEM-də qaydalar güncəlləndi.") [cite: 151]
         else:
-            print(f"❌ XƏTA {response.status_code}: {response.text}")
+            print(f"❌ API XƏTASI {response.status_code}: {response.text}")
+            
+    except requests.exceptions.ConnectionError:
+        print("❌ XƏTA: QRadar serverinə qoşulmaq mümkün olmadı. IP və ya VPN-i yoxlayın.")
     except Exception as e:
-        print(f"Bağlantı xətası: {e}")
-
-def main():
-    if not os.path.exists(RULES_DIR):
-        print(f"XƏTA: {RULES_DIR} qovluğu tapılmadı!")
-        return
-        
-    for filename in os.listdir(RULES_DIR):
-        if filename.endswith(".json"):
-            deploy_rule(os.path.join(RULES_DIR, filename))
+        print(f"Gözlənilməz xəta: {e}")
 
 if __name__ == "__main__":
-    main()
+    deploy_rules_to_qradar()
