@@ -1,0 +1,15 @@
+{
+  "name": "MilliSec-BT: LSASS Memory Access (Mimikatz/Credential Dumping)",
+  "identifier": "rule_lsass_access",
+  "enabled": true,
+  "responses": { "create_offense": true },
+  "tests": [
+    {
+      "test_type": "Event",
+      "condition": "and",
+      "rules": [
+        { "log_source_type": "Microsoft Windows Security Event Log", "event_id": "10" }
+      ]
+    }
+  ]
+}
