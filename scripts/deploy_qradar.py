@@ -22,7 +22,7 @@ def deploy_pure_json_rule():
         rule_data = json.load(f)
         
     # 2. Müəllimin dediyi o birbaşa qayda yeniləmə API endpointi (PUT metodu)
-    url = f"https://{QRADAR_IP}/api/config/extension_management/extension{RULE_ID}"
+    url = f"https://{QRADAR_IP}/api/ariel/searches{RULE_ID}"
     headers = {
         'SEC': SEC_TOKEN,
         'Accept': 'application/json',
