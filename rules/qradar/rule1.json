@@ -1,7 +1,36 @@
 {
-  "name": "MilliSec - Security Logs Cleared",
-  "type": "EVENT",
-  "enabled": true,
-  "base_capacity": 0,
-  "average_capacity": 0
+  "add_time": 42,
+  "added_by": "String",
+  "author": "String",
+  "authored_by_email": "String",
+  "beta": true,
+  "content_operation_error": "String",
+  "contents": [
+    {
+      "content_metadata": "String",
+      "content_type_id": 42,
+      "content_type_name": "String",
+      "identifier": "String"
+    }
+  ],
+  "description": "String",
+  "exported_qradar_version": "String",
+  "file_location": "String",
+  "fips_compliant": true,
+  "full_uninstall": true,
+  "id": 42,
+  "install_time": 42,
+  "installed_by": "String",
+  "min_qradar_version": "String",
+  "name": "String",
+  "signed": "String <one of: NOT_SIGNED, SIGNED_NOT_VERIFIED_NOT_VALIDATED, SIGNED_AND_VERIFIED_NOT_VALIDATED, SIGNED_AND_VERIFIED_AND_VALIDATED, SIGNED_AND_VERIFIED_NOT_VALIDATED_OLDCA, SIGNED_AND_VERIFIED_AND_VALIDATED_OLDCA, UNKNOWN>",
+  "signer_date": 42,
+  "signer_subject": "String",
+  "size": 42,
+  "status": "String <one of: UPLOADED, UPLOADING, INSTALLED, INSTALLING, INSTALL_FAILED, UNINSTALLED, UNINSTALLING, UNINSTALL_FAILED, NOT_INSTALLED, PREVIEWING, NONE, INSTALLED_WITH_ERROR, UNINSTALL_PREVIEWING, UNINSTALL_PREVIEW_FAILED>",
+  "supported_languages": [
+    "String"
+  ],
+  "validation_date": 42,
+  "version": "String"
 }
