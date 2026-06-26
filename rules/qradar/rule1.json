@@ -1,36 +1,59 @@
 {
-  "add_time": 42,
-  "added_by": "String",
-  "author": "String",
-  "authored_by_email": "String",
-  "beta": true,
-  "content_operation_error": "String",
-  "contents": [
+  "cursor_id": "s16",
+  "compressed_data_file_count": 0,
+  "compressed_data_total_size": 0,
+  "data_file_count": 5470,
+  "data_total_size": 67183115,
+  "index_file_count": 0,
+  "index_total_size": 0,
+  "processed_record_count": 1256462,
+  "error_messages": [
     {
-      "content_metadata": "String",
-      "content_type_id": 42,
-      "content_type_name": "String",
-      "identifier": "String"
+      "code": "String",
+      "contexts": [
+        "String"
+      ],
+      "message": "String",
+      "severity": "String <one of: INFO, WARN, ERROR>"
     }
   ],
-  "description": "String",
-  "exported_qradar_version": "String",
-  "file_location": "String",
-  "fips_compliant": true,
-  "full_uninstall": true,
-  "id": 42,
-  "install_time": 42,
-  "installed_by": "String",
-  "min_qradar_version": "String",
-  "name": "String",
-  "signed": "String <one of: NOT_SIGNED, SIGNED_NOT_VERIFIED_NOT_VALIDATED, SIGNED_AND_VERIFIED_NOT_VALIDATED, SIGNED_AND_VERIFIED_AND_VALIDATED, SIGNED_AND_VERIFIED_NOT_VALIDATED_OLDCA, SIGNED_AND_VERIFIED_AND_VALIDATED_OLDCA, UNKNOWN>",
-  "signer_date": 42,
-  "signer_subject": "String",
-  "size": 42,
-  "status": "String <one of: UPLOADED, UPLOADING, INSTALLED, INSTALLING, INSTALL_FAILED, UNINSTALLED, UNINSTALLING, UNINSTALL_FAILED, NOT_INSTALLED, PREVIEWING, NONE, INSTALLED_WITH_ERROR, UNINSTALL_PREVIEWING, UNINSTALL_PREVIEW_FAILED>",
-  "supported_languages": [
-    "String"
+  "desired_retention_time_msec": 86400000,
+  "progress": 46,
+  "progress_details": [
+    0,
+    0,
+    0,
+    0,
+    66957,
+    652657,
+    76594,
+    89809,
+    86032,
+    107729
   ],
-  "validation_date": 42,
-  "version": "String"
+  "query_execution_time": 1480,
+  "query_string": "SELECT sourceip, starttime, qid, sourceport  from events into s16 where sourceip in (select destinationip from events) parameters snapshotsize=2, PROGRESSDETAILSRESOLUTION=10",
+  "record_count": 1240923,
+  "save_results": false,
+  "status": "String <one of: WAIT, EXECUTE, SORTING, COMPLETED, CANCELED, ERROR>",
+  "snapshot": {
+    "events": [
+      {
+        "sourceip": "10.100.65.20",
+        "starttime": 1467049610018,
+        "qid": 10034,
+        "sourceport": 13675
+      },
+      {
+        "sourceip": "10.100.100.121",
+        "starttime": 1467049610019,
+        "qid": 20034,
+        "sourceport": 80
+      }
+    ]
+  },
+  "subsearch_ids": [
+    "sub_id_1"
+  ],
+  "search_id": "s16"
 }
