@@ -1,11 +1,7 @@
 {
-    "name": "MilliSec-BT-Suspicious-Activity",
-    "type": "EVENT",
-    "enabled": true,
-    "origin": "API",
-    "description": "API vasitəsilə yaradılmış qayda",
-    "tests": {
-        "type": "OR",
-        "tests": []
-    }
+  "name": "MilliSec - Security Logs Cleared",
+  "type": "EVENT",
+  "enabled": true,
+  "base_capacity": 0,
+  "average_capacity": 0
 }
