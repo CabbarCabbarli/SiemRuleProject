@@ -1,0 +1,4 @@
+index=* sourcetype=WinEventLog:Security EventCode=4625
+| rename Source_Network_Address as src_ip
+| stats count as failed_attempts, values(user) as targeted_users by src_ip
+| where failed_attempts>2 AND src_ip!="-" AND src_ip!=""
