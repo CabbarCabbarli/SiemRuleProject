@@ -1,0 +1,13 @@
+title: Suspicious Failed Login Attempts
+description: 4625 hadisə koduna əsasən eyni IP ünvanından 5-dən çox uğursuz giriş cəhdinin aşkarlanması.
+logsource:
+  product: windows
+  category: security
+detection:
+  selection:
+    EventID: 4625
+  filter_exclude:
+    Source_Network_Address:
+      - '-'
+      - ''
+  condition: selection and not filter_exclude | count(Source_Network_Address) by Source_Network_Address >= 5
